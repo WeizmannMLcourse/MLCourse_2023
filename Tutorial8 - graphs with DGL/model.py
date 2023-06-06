@@ -36,7 +36,7 @@ class NodeNetwork(nn.Module):
     def __init__(self, N_hidden):
         super().__init__()
 
-        self.net = FCN(N_hidden*2, [N_hidden*3, N_hidden*2], N_hidden)
+        self.net = FCN(N_hidden*2, [N_hidden*3, N_hidden*2, N_hidden*2], N_hidden)
 
     def forward(self, nodes):
 
@@ -58,7 +58,7 @@ class MoleculeMPNN(nn.Module):
         self.N_input = 4
         self.N_hidden = 64
         self.N_output = 1
-        self.N_message_passing_blocks = 3
+        self.N_message_passing_blocks = 4
 
         self.node_encoding  =  FCN(self.N_input, 
                                    [self.N_hidden, self.N_hidden], 

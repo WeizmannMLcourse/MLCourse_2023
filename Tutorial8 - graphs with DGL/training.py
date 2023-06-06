@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 import torch.nn.functional as func
-from tqdm.notebook import tqdm
+#from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 
 def train_valid_loop(net, train_dl, valid_dl, Nepochs, learning_rate=0.001):
@@ -58,6 +59,8 @@ def train_valid_loop(net, train_dl, valid_dl, Nepochs, learning_rate=0.001):
                 torch.save(net.state_dict(), 'saved_model.pt')
 
         print('Epoch: ',epoch,' Train loss: ',train_loss[-1],' Valid loss: ',valid_loss[-1])
+        np.save('train_loss.npy', train_loss)
+        np.save('valid_loss.npy', valid_loss)
 
     #Bring net back to CPU
     net.cpu()
